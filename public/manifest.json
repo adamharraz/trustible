@@ -1,0 +1,16 @@
+{
+  "name": "Trustible MVP",
+  "short_name": "Trustible",
+  "description": "A demo marketplace for verified renovation contractors with simulated milestone protected payments.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f6f3ee",
+  "theme_color": "#183d3d",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
