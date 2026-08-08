@@ -13,3 +13,5 @@ Recommended settings:
 Do not use `npx wrangler deploy` for this static MVP. That command makes Cloudflare treat the project as a Worker/OpenNext deployment, which can create service-binding errors that are unnecessary for this prototype.
 
 If Cloudflare accepts a blank deploy command, prefer the normal Pages flow with only the build command and output directory. If the UI requires a deploy command, use the Pages command above.
+
+If deployment fails with `Authentication error [code: 10000]`, update the `CLOUDFLARE_API_TOKEN` environment variable. The token must belong to the same Cloudflare account and include Cloudflare Pages write/edit access for the `trustible` Pages project.
