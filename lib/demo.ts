@@ -50,7 +50,8 @@ export type Project = {
 };
 
 export type DemoState = {
-  version: 2;
+  version: 3;
+  savedInspirationIds: string[];
   shortlisted: string[];
   requests: QuoteRequest[];
   quotes: Quote[];
@@ -58,6 +59,21 @@ export type DemoState = {
   lastAction: string;
 };
 
+
+export type InspirationItem = {
+  id: string;
+  contractorId: string;
+  title: string;
+  studio: string;
+  tag: string;
+  category: string;
+  copy: string;
+  image: string;
+  alt: string;
+  saveCount: number;
+  credit: string;
+  sourceUrl: string;
+};
 export const contractors: Contractor[] = [
   { id: "nook", name: "Nook & Grain", studio: "Nook & Grain Studio", area: "Petaling Jaya", specialty: "Warm minimal", budget: "RM80kâ€“RM180k", rating: 4.9, reviews: 38, verified: true, summary: "Calm, durable homes with clear scope and a careful handover.", avatar: "NG", projects: 42, response: "Replies in 2h", tags: ["Space planning", "Joinery", "Residential"] },
   { id: "form", name: "Form & Field", studio: "Form & Field", area: "Bangsar", specialty: "Modern tropical", budget: "RM120kâ€“RM260k", rating: 4.8, reviews: 27, verified: true, summary: "Indoor-outdoor living, realistic budgets, and weekly progress notes.", avatar: "FF", projects: 31, response: "Replies in 4h", tags: ["Renovation", "Lighting", "Tropical"] },
@@ -69,17 +85,18 @@ export const contractors: Contractor[] = [
   { id: "moss", name: "Moss & Tile", studio: "Moss & Tile", area: "Kuala Lumpur", specialty: "Biophilic", budget: "RM100kâ€“RM300k", rating: 4.9, reviews: 11, verified: true, summary: "Biophilic homes with a documented process from brief to keys.", avatar: "MT", projects: 12, response: "Replies in 2h", tags: ["Biophilic", "Custom", "Premium"] }
 ];
 
-export const inspiration = [
-  { id: "in-01", title: "A cooler way to come home", studio: "Nook & Grain", tag: "Petaling Jaya", color: "sand", copy: "Oak, linen and a single green wall turn a busy terrace into a reset button." },
-  { id: "in-02", title: "The five-metre kitchen", studio: "Atelier Kecil", tag: "Mont Kiara", color: "blue", copy: "A compact condo kitchen planned around movement, not just cabinets." },
-  { id: "in-03", title: "Tropical, without the theme", studio: "Form & Field", tag: "Bangsar", color: "green", copy: "Deep shade, cross-ventilation and honest materials do the heavy lifting." },
-  { id: "in-04", title: "A family room that flexes", studio: "Line House", tag: "Subang Jaya", color: "clay", copy: "Storage walls, soft edges and a floor plan that changes with the family." },
-  { id: "in-05", title: "The quiet arrival", studio: "Casa Sore", tag: "Ampang", color: "cream", copy: "A small entry sequence that makes the rest of the home feel intentional." },
-  { id: "in-06", title: "Green in the gaps", studio: "Moss & Tile", tag: "Kuala Lumpur", color: "mint", copy: "Planting, light and texture bring a low-maintenance garden into the plan." }
+export const inspiration: InspirationItem[] = [
+  { id: "in-01", contractorId: "nook", title: "A cooler way to come home", studio: "Nook & Grain", tag: "Petaling Jaya", category: "Warm minimal", copy: "Oak, linen and a single green wall turn a busy terrace into a reset button.", image: "/inspiration/warm-terrace.webp", alt: "Warm minimalist living room with oak furniture and soft linen textures", saveCount: 128, credit: "Unsplash", sourceUrl: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0" },
+  { id: "in-02", contractorId: "atelier", title: "The five-metre kitchen", studio: "Atelier Kecil", tag: "Mont Kiara", category: "Compact living", copy: "A compact condo kitchen planned around movement, not just cabinets.", image: "/inspiration/compact-kitchen.webp", alt: "Compact contemporary kitchen with light wood cabinetry", saveCount: 96, credit: "Unsplash", sourceUrl: "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea" },
+  { id: "in-03", contractorId: "form", title: "Tropical, without the theme", studio: "Form & Field", tag: "Bangsar", category: "Modern tropical", copy: "Deep shade, cross-ventilation and honest materials do the heavy lifting.", image: "/inspiration/tropical-home.webp", alt: "Light-filled modern interior with tropical plants and natural materials", saveCount: 154, credit: "Unsplash", sourceUrl: "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d" },
+  { id: "in-04", contractorId: "line", title: "A family room that flexes", studio: "Line House", tag: "Subang Jaya", category: "Family homes", copy: "Storage walls, soft edges and a floor plan that changes with the family.", image: "/inspiration/family-room.webp", alt: "Calm family living room with layered furniture and storage", saveCount: 87, credit: "Unsplash", sourceUrl: "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace" },
+  { id: "in-05", contractorId: "casa", title: "The quiet arrival", studio: "Casa Sore", tag: "Ampang", category: "Soft contemporary", copy: "A small entry sequence that makes the rest of the home feel intentional.", image: "/inspiration/quiet-entry.webp", alt: "Minimal entryway with warm neutral surfaces and natural light", saveCount: 72, credit: "Unsplash", sourceUrl: "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3" },
+  { id: "in-06", contractorId: "moss", title: "Green in the gaps", studio: "Moss & Tile", tag: "Kuala Lumpur", category: "Biophilic", copy: "Planting, light and texture bring a low-maintenance garden into the plan.", image: "/inspiration/green-gaps.webp", alt: "Biophilic interior with plants and layered green textures", saveCount: 119, credit: "Unsplash", sourceUrl: "https://images.unsplash.com/photo-1618220179428-22790b461013" }
 ];
 
 export const seedState: DemoState = {
-  version: 2,
+  version: 3,
+  savedInspirationIds: ["in-01"],
   shortlisted: ["nook", "atelier"],
   requests: [{ id: "req-demo", contractorId: "nook", brief: "A warm, practical refresh for a 1,200 sq ft terrace home.", budget: "RM80kâ€“RM120k", timeline: "Start in 6â€“8 weeks", status: "quoted", createdAt: "Today" }],
   quotes: [{ id: "req-demo", contractorId: "nook", brief: "A warm, practical refresh for a 1,200 sq ft terrace home.", budget: "RM80kâ€“RM120k", timeline: "Start in 6â€“8 weeks", status: "quoted", createdAt: "Today", amount: 98000, deposit: 19600, validity: "Valid for 14 days" }],
@@ -98,6 +115,7 @@ export function money(value: number) { return new Intl.NumberFormat("en-MY", { s
 export type Action =
   | { type: "hydrate"; state: DemoState }
   | { type: "toggle_shortlist"; id: string }
+  | { type: "toggle_inspiration_save"; id: string }
   | { type: "create_request"; contractorId: string; brief: string; budget: string; timeline: string }
   | { type: "accept_quote"; quoteId: string }
   | { type: "fund_project"; projectId: string }
@@ -114,6 +132,10 @@ export function demoReducer(state: DemoState, action: Action): DemoState {
   if (action.type === "toggle_shortlist") {
     const has = state.shortlisted.includes(action.id);
     return { ...state, shortlisted: has ? state.shortlisted.filter((id) => id !== action.id) : [...state.shortlisted, action.id], lastAction: has ? "Removed from shortlist" : "Added to shortlist" };
+  }
+  if (action.type === "toggle_inspiration_save") {
+    const has = state.savedInspirationIds.includes(action.id);
+    return { ...state, savedInspirationIds: has ? state.savedInspirationIds.filter((id) => id !== action.id) : [...state.savedInspirationIds, action.id], lastAction: has ? "Removed inspiration save" : "Saved inspiration" };
   }
   if (action.type === "create_request") {
     const id = `req-${Date.now()}`;
@@ -140,6 +162,4 @@ export function demoReducer(state: DemoState, action: Action): DemoState {
   if (action.type === "complete_project") return { ...state, projects: state.projects.map((item) => item.id === project.id ? { ...item, status: "complete", reviewUnlocked: true } : item), lastAction: "Project complete; review unlocked" };
   return state;
 }
-
-
 
