@@ -4,7 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build && node scripts/prepare-sites-dist.mjs",
+    "astryx:build": "astryx theme build app/trustible-theme.ts -o app/trustible-theme.css && node scripts/prepare-astryx-theme.mjs",
+    "astryx:guard": "node scripts/check-astryx-migration.mjs",
+    "build": "npm run astryx:build && next build && node scripts/prepare-sites-dist.mjs",
     "start": "next start",
     "lint": "next lint"
   },
@@ -18,12 +20,16 @@
     "react-dom": "^19.0.0"
   },
   "devDependencies": {
+    "@astryxdesign/cli": "^0.4.3",
     "@types/node": "^22.10.0",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
     "typescript": "^5.7.0"
   },
   "astryx": {
-    "theme": "@astryxdesign/theme-neutral/built"
+    "theme": "./app/trustible.cjs"
   }
 }
+
+
+
